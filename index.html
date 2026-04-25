@@ -8,70 +8,141 @@
 </head>
 <body>
   <header class="hero">
-    <nav>
-      <h2>ParkWise AI</h2>
-      <a href="#dashboard">Dashboard</a>
+    <nav class="navbar">
+      <div class="logo">ParkWise AI</div>
+      <div class="nav-links">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#map">Parking Map</a>
+        <a href="#admin">Admin</a>
+      </div>
     </nav>
 
     <div class="hero-content">
+      <p class="badge">AI Autonomous Smart City Hackathon 2026</p>
       <h1>Smart Parking Finder AI</h1>
       <p>
-        AI-powered smart city parking system that detects parking availability
-        and recommends the nearest available parking spot.
+        An AI-powered smart city parking system that helps drivers find available parking spaces faster,
+        reduce congestion, save fuel, and improve urban mobility.
       </p>
 
-      <button onclick="findParking(); document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });">
-        Find Parking
-      </button>
+      <div class="hero-actions">
+        <button onclick="findParking(); scrollToSection('dashboard')">Find Parking</button>
+        <button class="secondary-btn" onclick="simulateLiveData(); scrollToSection('dashboard')">Simulate Live Data</button>
+      </div>
     </div>
   </header>
 
-  <main id="dashboard" class="dashboard">
-    <section class="stats">
-      <div class="card">
-        <h3>Total Slots</h3>
-        <p id="totalSlots">20</p>
+  <main>
+    <section id="dashboard" class="dashboard">
+      <div class="section-heading">
+        <h2>Live Parking Dashboard</h2>
+        <p>Real-time parking availability, AI recommendation, and smart city insights.</p>
       </div>
 
-      <div class="card">
-        <h3>Available</h3>
-        <p id="availableSlots">0</p>
-      </div>
+      <section class="stats">
+        <div class="card">
+          <h3>Total Slots</h3>
+          <p id="totalSlots">20</p>
+        </div>
+        <div class="card">
+          <h3>Available</h3>
+          <p id="availableSlots">0</p>
+        </div>
+        <div class="card">
+          <h3>Occupied</h3>
+          <p id="occupiedSlots">0</p>
+        </div>
+        <div class="card">
+          <h3>Occupancy</h3>
+          <p id="occupancyRate">0%</p>
+        </div>
+      </section>
 
-      <div class="card">
-        <h3>Occupied</h3>
-        <p id="occupiedSlots">0</p>
-      </div>
+      <section class="control-panel">
+        <div class="control-card">
+          <h3>Driver Controls</h3>
+          <label for="zoneSelect">Preferred Zone</label>
+          <select id="zoneSelect">
+            <option value="all">Any Zone</option>
+            <option value="A">Zone A</option>
+            <option value="B">Zone B</option>
+            <option value="C">Zone C</option>
+            <option value="D">Zone D</option>
+          </select>
 
-      <div class="card">
-        <h3>Occupancy</h3>
-        <p id="occupancyRate">0%</p>
-      </div>
+          <label for="vehicleType">Vehicle Type</label>
+          <select id="vehicleType">
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+            <option value="ev">Electric Vehicle</option>
+          </select>
+
+          <button onclick="findParking()">Recommend Best Slot</button>
+          <button class="secondary-btn" onclick="reserveSlot()">Reserve Recommended Slot</button>
+        </div>
+
+        <div class="recommendation">
+          <h3>AI Recommendation</h3>
+          <p id="recommendationText">
+            Click "Recommend Best Slot" to get the nearest available parking space.
+          </p>
+
+          <h3>AI Insight</h3>
+          <p id="aiInsight">Waiting for parking data analysis...</p>
+        </div>
+      </section>
     </section>
 
-    <section class="parking-section">
-      <div>
+    <section id="map" class="parking-area">
+      <div class="section-heading">
         <h2>Parking Slot Map</h2>
-        <p class="small-text">Green = Available | Red = Occupied</p>
-        <div id="parkingGrid" class="parking-grid"></div>
+        <p><span class="dot green"></span> Available <span class="dot red"></span> Occupied <span class="dot yellow"></span> Recommended / Reserved</p>
       </div>
 
-      <div class="recommendation">
-        <h2>AI Recommendation</h2>
-        <p id="recommendationText">
-          Click "Find Parking" to get the nearest available parking spot.
-        </p>
+      <div id="parkingGrid" class="parking-grid"></div>
+    </section>
 
-        <h3>AI Insight</h3>
-        <p id="aiInsight">
-          Waiting for parking data analysis...
-        </p>
+    <section id="admin" class="admin-section">
+      <div class="section-heading">
+        <h2>Admin Dashboard</h2>
+        <p>City officers can monitor zones, update parking data, and manage smart parking flow.</p>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Zone Status</h3>
+          <div id="zoneStatus"></div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Update Slot Status</h3>
+          <label for="slotInput">Slot ID</label>
+          <input id="slotInput" type="text" placeholder="Example: A2" />
+
+          <label for="statusSelect">New Status</label>
+          <select id="statusSelect">
+            <option value="available">Available</option>
+            <option value="occupied">Occupied</option>
+          </select>
+
+          <button onclick="updateSlotStatus()">Update Slot</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>Smart City Impact</h3>
+          <ul>
+            <li>Reduces time spent searching for parking.</li>
+            <li>Reduces unnecessary traffic congestion.</li>
+            <li>Saves fuel and lowers air pollution.</li>
+            <li>Supports real-time city parking management.</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Smart Parking Finder AI | Smart City Hackathon 2026</p>
+    <p>Smart Parking Finder AI | Powered by AI + Smart City IoT Simulation</p>
   </footer>
 
   <script src="script.js"></script>
