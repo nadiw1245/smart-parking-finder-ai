@@ -24,13 +24,19 @@ const parkingSlots = [
   { id: "D5", status: "available", distance: 160 }
 ];
 
-function loadParkingGrid() {
+function loadParkingGrid(bestSlotId = null) {
   const grid = document.getElementById("parkingGrid");
   grid.innerHTML = "";
 
   parkingSlots.forEach(slot => {
     const div = document.createElement("div");
-    div.className = `slot ${slot.status}`;
+
+    if (slot.id === bestSlotId) {
+      div.className = `slot ${slot.status} best-slot`;
+    } else {
+      div.className = `slot ${slot.status}`;
+    }
+
     div.innerText = slot.id;
     grid.appendChild(div);
   });
@@ -59,12 +65,16 @@ function findParking() {
 
     document.getElementById("aiInsight").innerText =
       "AI Insight: The parking area is full. Drivers should be redirected to another parking zone.";
+
+    alert("No available parking slots at the moment.");
     return;
   }
 
   const nearestSlot = availableSlots.reduce((nearest, current) => {
     return current.distance < nearest.distance ? current : nearest;
   });
+
+  loadParkingGrid(nearestSlot.id);
 
   document.getElementById("recommendationText").innerText =
     `Nearest available parking spot is ${nearestSlot.id}, approximately ${nearestSlot.distance} meters away.`;
@@ -83,6 +93,8 @@ function findParking() {
   }
 
   document.getElementById("aiInsight").innerText = insight;
+
+  alert(`Nearest available parking spot: ${nearestSlot.id} - ${nearestSlot.distance} meters away.`);
 }
 
 loadParkingGrid();
