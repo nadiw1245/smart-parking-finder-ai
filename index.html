@@ -19,7 +19,10 @@
         AI-powered smart city parking system that detects parking availability
         and recommends the nearest available parking spot.
       </p>
-      <button onclick="findParking()">Find Parking</button>
+
+      <button onclick="findParking(); document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });">
+        Find Parking
+      </button>
     </div>
   </header>
 
