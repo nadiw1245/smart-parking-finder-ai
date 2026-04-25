@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Parking Finder AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav>
+      <h2>ParkWise AI</h2>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+
+    <div class="hero-content">
+      <h1>Smart Parking Finder AI</h1>
+      <p>
+        AI-powered smart city parking system that detects parking availability
+        and recommends the nearest available parking spot.
+      </p>
+      <button onclick="findParking()">Find Parking</button>
+    </div>
+  </header>
+
+  <main id="dashboard" class="dashboard">
+    <section class="stats">
+      <div class="card">
+        <h3>Total Slots</h3>
+        <p id="totalSlots">20</p>
+      </div>
+
+      <div class="card">
+        <h3>Available</h3>
+        <p id="availableSlots">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Occupied</h3>
+        <p id="occupiedSlots">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Occupancy</h3>
+        <p id="occupancyRate">0%</p>
+      </div>
+    </section>
+
+    <section class="parking-section">
+      <div>
+        <h2>Parking Slot Map</h2>
+        <p class="small-text">Green = Available | Red = Occupied</p>
+        <div id="parkingGrid" class="parking-grid"></div>
+      </div>
+
+      <div class="recommendation">
+        <h2>AI Recommendation</h2>
+        <p id="recommendationText">
+          Click "Find Parking" to get the nearest available parking spot.
+        </p>
+
+        <h3>AI Insight</h3>
+        <p id="aiInsight">
+          Waiting for parking data analysis...
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Smart Parking Finder AI | Smart City Hackathon 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
